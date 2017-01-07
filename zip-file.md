@@ -35,3 +35,24 @@ private void makeFileString(File file,String path,ZipOutputStream zipOutputStrea
     }
 ```
 递归压缩
+
+```java
+    for (File file : dir) {
+                if(file.isFile()){
+                    try {
+                        String fileName = new File(destPath,file.getName()).toString();
+                        zipOutputStream.putNextEntry(new ZipEntry(fileName));
+                        FileInputStream in = new FileInputStream(file);
+                        int len;
+                        byte[] buffer = new byte[1024];
+                        while ((len = in.read(buffer)) > 0) {
+                            zipOutputStream.write(buffer, 0, len);
+                        }
+                        zipOutputStream.flush();
+                    }catch (Exception e){
+                        logger.info("=====> pushPicOrApk error",e);
+                    }
+                }
+            }
+```
+非递归压缩
