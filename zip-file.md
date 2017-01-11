@@ -1,18 +1,24 @@
 ```java
-ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(new File(zipFileName)));
-        makeFileString(dir,destPath,zipOutputStream);
-        for (File file : lists) {
-            try {
-                FileInputStream in = new FileInputStream(selectDirPath + "/" + file.getName());
-                int len;
-                byte[] buffer = new byte[1024];
-                while ((len = in.read(buffer)) > 0) {
-                    zipOutputStream.write(buffer, 0, len);
-                }
-            }catch (Exception e){
-                logger.info("=====> pushPicOrApk error",e);
-            }
-}
+//压缩进压缩包的文件名字
+    String path = "apks";
+    //需要压缩的文件名字
+    String zipFile = getFilePath() + path + ".zip";
+if(appUpdateFile.listFiles().length > 0){
+                        for (File file : list) {
+                            String zipFilePath = file.toString();
+                            zipOutputStream.putNextEntry(new ZipEntry(zipFilePath));
+                            //真正需要压缩的文件路径
+                            String zipFileRealPath = zipFilePath.replace(path,selectPath);
+                            FileInputStream in = new FileInputStream(zipFileRealPath);
+                            int len;
+                            byte[] buffer = new byte[1024];
+                            while ((len = in.read(buffer)) > 0) {
+                                zipOutputStream.write(buffer, 0, len);
+                            }
+                            zipOutputStream.flush();
+                        }
+                        zipOutputStream.close();
+                    }
 private void makeFileString(File file,String path,ZipOutputStream zipOutputStream) throws IOException {
         if(file.isDirectory()){
             for (File file1 : file.listFiles()) {
