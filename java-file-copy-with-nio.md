@@ -30,4 +30,27 @@ class test{
         }
     }
 }
-````
+```
+```java
+Path file = Paths.get("D:\\virtualbox\\vagrant-linux_default_1461814560289_78803\\box-disk1.vmdk");
+FileChannel fileChannel = FileChannel.open(file);
+FileChannel writeFile = new FileOutputStream(new File("D:\\virtualbox\\vagrant-linux_default_1461814560289_78803\\box-disk1.vmdk.bak")).getChannel();
+
+ByteBuffer byteBuffer = ByteBuffer.allocate(1024 * 1024);//读写缓存
+int readN;
+long b = System.currentTimeMillis();
+while ( (readN = fileChannel.read(byteBuffer)) != -1 ){
+    //转换模式
+    byteBuffer.flip();
+    //开始写
+    writeFile.write(byteBuffer);
+    //
+    while (byteBuffer.hasRemaining()){
+        writeFile.write(byteBuffer);
+    }
+    byteBuffer.compact();
+}
+writeFile.close();
+fileChannel.close();
+System.out.println("=====>" + (System.currentTimeMillis() - b));
+```
