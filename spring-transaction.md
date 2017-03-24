@@ -1,6 +1,5 @@
-﻿##事务隔离级别
+﻿##事务隔离级别##
 隔离级别是指若干个并发的事务之间的隔离程度。TransactionDefinition 接口中定义了五个表示隔离级别的常量：
-##
 -**TransactionDefinition.ISOLATION_DEFAULT**：这是默认值，表示使用底层数据库的默认隔离级别。对大部分数据库而言，通常这值就是TransactionDefinition.ISOLATION_READ_COMMITTED。</br>
 -**TransactionDefinition.ISOLATION_READ_UNCOMMITTED**：该隔离级别表示一个事务可以读取另一个事务修改但还没有提交的数据。该级别不能防止脏读和不可重复读，因此很少使用该隔离级别。</br>
 -**TransactionDefinition.ISOLATION_READ_COMMITTED**：该隔离级别表示一个事务只能读取另一个事务已经提交的数据。该级别可以防止脏读，这也是大多数情况下的推荐值。</br>
