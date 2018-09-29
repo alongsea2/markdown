@@ -288,3 +288,6 @@ db.collection.aggregate([
 D:\maven\conf\settings.xml
 D:\m2\.m2
 java -jar swagger2markup-cli-1.1.0.jar convert -i "http://192.168.20.61:8080/yqb-api/api-docs/" -d F:\
+
+https://stackoverflow.com/questions/3803326/this-getclass-getclassloader-getresource-and-nullpointerexception
+
